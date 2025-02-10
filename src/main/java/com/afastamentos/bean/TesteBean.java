@@ -17,14 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 public class TesteBean implements Serializable {
 
-    private String nome = "Renato";
-
     @Autowired
     private  UserService userService;
-
-    public void imprimeNome(){
-        System.out.println(this.nome);
-    }
 
     public UserDTO listarUsuario(Long id){
         UserDTO usuario;
