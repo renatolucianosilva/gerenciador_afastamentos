@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:faces="jakarta.faces"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html"
+      xmlns:pt="jakarta.faces.passthrough"
+      xmlns:cc="jakarta.faces.composite"
+      xmlns:c="jakarta.tags.core"
+      xmlns:p="primefaces"
+      xmlns:fn="jakarta.tags.functions">
+<h:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title>Gerenciador de Afastamentos</title>
+
+    <h:outputStylesheet library="webjars" name="primeflex/3.3.1/primeflex.min.css"/>
+
+</h:head>
+<h:body>
+
+
+    <div class="card">
+        <p:splitter style="height: auto ">
+
+
+            <p:splitterPanel size="80">
+                <p:splitter layout="vertical">
+                    <p:splitterPanel styleClass=" " size="15">
+                        <h:form>
+                            <p:breadCrumb>
+                                <p:menuitem value="#"/>
+                                <p:menuitem value="Pré Agendamento"/>
+                                <p:menuitem value="Agendamento"/>
+                                <p:menuitem value="Relatório"/>
+                                <p:menuitem value="Pesquisas"/>
+                                <p:menuitem value="Cadastro"  />
+                            </p:breadCrumb>
+                        </h:form>
+                    </p:splitterPanel>
+
+
+                </p:splitter>
+
+            </p:splitterPanel>
+
+        </p:splitter>
+    </div>
+    <div class="card">
+
+        <p:splitter style="height: 300px" styleClass="mb-5" widgetVar="splitter">
+            <p:splitterPanel >
+                <div class="inputsCasdatro">
+                    <h:form>
+                <div>
+                    <p:outputLabel  value="Nome Completo: "/>
+                    <p:inputText  value="#{cadastroManagedBean.userNameCompleto}" />
+                </div>
+
+                <div>
+                    <p:outputLabel  value="Nome de Guerra: "/>
+                    <p:inputText  value="#{cadastroManagedBean.userName}" />
+                </div>
+                <div >
+                    <p:outputLabel for="navigator" value="Data de Nascimento" />
+                    <p:datePicker id="navigator" value="#{cadastroManagedBean.userNascimento}" monthNavigator="true" yearNavigator="true" showWeek="true" />
+                </div>
+                    <p:commandButton value="Enviar" actionListener="#{cadastroManagedBean.cadastroUsuario}" />
+                    </h:form>
+                </div>
+
+            </p:splitterPanel>
+
+            <p:splitterPanel styleClass="flex align-items-center justify-content-center">
+                Panel 2
+            </p:splitterPanel>
+        </p:splitter>
+    </div>
+</h:body>
+</html>
