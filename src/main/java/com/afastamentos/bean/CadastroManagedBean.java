@@ -7,12 +7,15 @@ import com.afastamentos.dto.UserDTO;
 import com.afastamentos.service.UserService;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.enterprise.context.RequestScoped;
-import jakarta.faces.view.ViewScoped;
+import jakarta.faces.application.FacesMessage;
+import jakarta.faces.context.FacesContext;
+
 import jakarta.inject.Named;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
+
 
 
 import java.io.Serializable;
@@ -42,9 +45,19 @@ public class CadastroManagedBean implements Serializable {
 
     public void cadastroUsuario() {
         this.userType = false;
+
         UserDTO userDTO = new UserDTO(userNameCompleto, userName, userNascimento, userType);
 
-        userService.cadastrarUsuario(userDTO);
+        UserDTO userDTOok = userService.cadastrarUsuario(userDTO);
+
+        if(userDTOok != null) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Info", "Cadastro efetuado com sucesso!"));
+
+        }else{
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Cadastro Não Realizado!"));
+        }
+
+
 
 
 

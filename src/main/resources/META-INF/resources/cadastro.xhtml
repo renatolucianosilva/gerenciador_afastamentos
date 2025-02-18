@@ -29,10 +29,9 @@
                     <p:splitterPanel styleClass=" " size="15">
                         <h:form>
                             <p:breadCrumb>
-                                <p:menuitem value="#"/>
-                                <p:menuitem value="Pré Agendamento"/>
-                                <p:menuitem value="Agendamento"/>
-                                <p:menuitem value="Relatório"/>
+                                <p:menuitem value="#" />
+                                <p:menuitem value="Relatório" action="index"/>
+                                <p:menuitem value="Agendamento" action="agendamento"/>
                                 <p:menuitem value="Pesquisas"/>
                                 <p:menuitem value="Cadastro"  />
                             </p:breadCrumb>
@@ -52,6 +51,7 @@
             <p:splitterPanel >
                 <div class="inputsCasdatro">
                     <h:form>
+                        <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
                 <div>
                     <p:outputLabel  value="Nome Completo: "/>
                     <p:inputText  value="#{cadastroManagedBean.userNameCompleto}" />
@@ -65,7 +65,7 @@
                     <p:outputLabel for="navigator" value="Data de Nascimento" />
                     <p:datePicker id="navigator" value="#{cadastroManagedBean.userNascimento}" monthNavigator="true" yearNavigator="true" showWeek="true" />
                 </div>
-                    <p:commandButton value="Enviar" actionListener="#{cadastroManagedBean.cadastroUsuario}" />
+                    <p:commandButton value="Enviar" actionListener="#{cadastroManagedBean.cadastroUsuario}" update="msgs"/>
                     </h:form>
                 </div>
 
