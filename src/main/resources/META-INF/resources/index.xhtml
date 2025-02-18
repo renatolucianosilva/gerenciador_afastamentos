@@ -18,13 +18,8 @@
 
 </h:head>
 <h:body>
-
-
     <div class="card">
         <p:splitter style="height: auto ">
-            <p:splitterPanel styleClass="flex align-items-center justify-content-left" size="20" minSize="10">
-                <p:calendar id="inline" value="#{calendarJava8View.date1}" mode="inline"/>
-            </p:splitterPanel>
             <p:splitterPanel size="80">
                 <p:splitter layout="vertical">
                     <p:splitterPanel styleClass=" " size="15">
@@ -35,32 +30,44 @@
                                 <p:menuitem value="Agendamento"/>
                                 <p:menuitem value="Relatório"/>
                                 <p:menuitem value="Pesquisas"/>
-                                <p:menuitem value="Cadastro" />
+                                <p:menuitem value="Cadastro" actionListener="cadastro" />
                             </p:breadCrumb>
                         </h:form>
                     </p:splitterPanel>
-                    <p:splitterPanel size="85">
-                        <p:splitter>
-                            <p:splitterPanel styleClass="flex align-items-center justify-content-center" size="20">
-                                Afastamentos do Dia
-                            </p:splitterPanel>
-                            <p:splitterPanel styleClass="flex align-items-center justify-content-center" size="80">
-                               Pré Agendamento
-                                <p:outputLabel value="#{calendarJava8View.date1}" />
-                            </p:splitterPanel>
-                        </p:splitter>
-                    </p:splitterPanel>
+
+
                 </p:splitter>
+
+            </p:splitterPanel>
+
+        </p:splitter>
+    </div>
+    <div class="card">
+
+        <p:splitter  styleClass="mb-5" widgetVar="splitter">
+
+            <p:splitterPanel >
+                <h:form>
+                    <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
+
+                    <p:calendar id="inline" value="#{indexManagedBean.date}" mode="inline" pattern="dd/MM/yyyy">
+
+                        <p:ajax event="dateSelect" listener="#{indexManagedBean.onDateSelect}" update="dataDisplay, msgs" />
+
+                    </p:calendar>
+
+
+
+
+                </h:form>
+
+            </p:splitterPanel>
+
+            <p:splitterPanel styleClass="flex align-items-center justify-content-center"  >
+                Panel 2
             </p:splitterPanel>
         </p:splitter>
     </div>
-
-
-
-
-
-
-
 
 </h:body>
 </html>
