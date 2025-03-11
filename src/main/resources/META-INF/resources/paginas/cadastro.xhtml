@@ -30,10 +30,10 @@
                         <h:form>
                             <p:breadCrumb>
                                 <p:menuitem value="#" />
-                                <p:menuitem value="Relatório" action="index"/>
-                                <p:menuitem value="Agendamento" action="agendamento"/>
+                                <p:menuitem value="Relatório" outcome="/index.xhtml" />
+                                <p:menuitem value="Agendamento" outcome="agendamento.xhtml"/>
                                 <p:menuitem value="Pesquisas"/>
-                                <p:menuitem value="Cadastro"  />
+                                <p:menuitem value="Cadastro" outcome="cadastro.xhtml"  />
                             </p:breadCrumb>
                         </h:form>
                     </p:splitterPanel>
@@ -47,33 +47,32 @@
     </div>
     <div class="card">
 
-        <p:splitter style="height: 300px" styleClass="mb-5" widgetVar="splitter">
+        <p:splitter  styleClass="mb-5" widgetVar="splitter" >
             <p:splitterPanel >
-                <div class="inputsCasdatro">
+                <p:panelGrid columns="4" >
+
                     <h:form>
                         <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
-                <div>
-                    <p:outputLabel  value="Nome Completo: "/>
-                    <p:inputText  value="#{cadastroManagedBean.userNameCompleto}" />
-                </div>
 
-                <div>
-                    <p:outputLabel  value="Nome de Guerra: "/>
-                    <p:inputText  value="#{cadastroManagedBean.userName}" />
-                </div>
-                <div >
-                    <p:outputLabel for="navigator" value="Data de Nascimento" />
-                    <p:datePicker id="navigator" value="#{cadastroManagedBean.userNascimento}" monthNavigator="true" yearNavigator="true" showWeek="true" />
-                </div>
-                    <p:commandButton value="Enviar" actionListener="#{cadastroManagedBean.cadastroUsuario}" update="msgs"/>
+                        <p:outputLabel  value="Nome Completo: " for="nomeCompleto"/>
+                        <p:inputText  value="#{cadastroManagedBean.userNameCompleto}" required="true" id="nomeCompleto" size="40" />
+
+                        <p:outputLabel  value="Nome de Guerra: " for="nomeGuerra"/>
+                        <p:inputText  value="#{cadastroManagedBean.userName}" id="nomeGuerra" size="40"/>
+
+
+                        <p:outputLabel for="navigator" value="Data de Nascimento:" />
+                        <p:datePicker id="navigator" value="#{cadastroManagedBean.userNascimento}" monthNavigator="true" yearNavigator="true" showWeek="true" size="40"/>
+                        <p:commandButton value="Enviar" actionListener="#{cadastroManagedBean.cadastroUsuario}" update="msgs"/>
                     </h:form>
-                </div>
+
+                </p:panelGrid>
 
             </p:splitterPanel>
 
-            <p:splitterPanel styleClass="flex align-items-center justify-content-center">
-                Panel 2
-            </p:splitterPanel>
+
+
+
         </p:splitter>
     </div>
 </h:body>

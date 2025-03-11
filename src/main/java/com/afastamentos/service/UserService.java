@@ -15,6 +15,11 @@ import com.afastamentos.repository.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 
+import java.util.ArrayList;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @AllArgsConstructor
 public class UserService {
@@ -46,6 +51,11 @@ public class UserService {
 
          return userRepository.findAll(paginacao).map(p -> modelMapper.map(p, UserDTO.class));
 
+    }
+
+    public List<UserDTO> listaUsuarios(){
+
+        return userRepository.findAll().stream().map(p -> modelMapper.map(p, UserDTO.class)).collect(Collectors.toList());
     }
 
     

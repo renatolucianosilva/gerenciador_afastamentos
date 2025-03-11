@@ -1,4 +1,4 @@
-package com.afastamentos.bean;
+package com.afastamentos.Managedbens;
 
 
 

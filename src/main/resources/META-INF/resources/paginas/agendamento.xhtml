@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:faces="jakarta.faces"
+      xmlns:ui="jakarta.faces.facelets"
+      xmlns:f="jakarta.faces.core"
+      xmlns:h="jakarta.faces.html"
+      xmlns:pt="jakarta.faces.passthrough"
+      xmlns:cc="jakarta.faces.composite"
+      xmlns:c="jakarta.tags.core"
+      xmlns:p="primefaces"
+      xmlns:fn="jakarta.tags.functions">
+<h:head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title>Gerenciador de Afastamentos</title>
+
+    <h:outputStylesheet library="webjars" name="primeflex/3.3.1/primeflex.min.css"/>
+
+</h:head>
+<h:body>
+    <div class="card">
+        <p:splitter style="height: auto ">
+            <p:splitterPanel size="80">
+                <p:splitter layout="vertical">
+                    <p:splitterPanel styleClass=" " size="15">
+                        <h:form>
+                            <p:breadCrumb>
+                                <p:menuitem value="#" />
+                                <p:menuitem value="Relatório" outcome="/index.xhtml"/>
+                                <p:menuitem value="Agendamento" outcome="agendamento.xhtml"/>
+                                <p:menuitem value="Pesquisas"/>
+                                <p:menuitem value="Cadastro" outcome="cadastro.xhtml"  />
+                            </p:breadCrumb>
+                        </h:form>
+                    </p:splitterPanel>
+
+
+                </p:splitter>
+
+            </p:splitterPanel>
+
+
+
+        </p:splitter>
+
+    </div>
+
+    <div class="card">
+
+        <p:splitter style="height: auto" styleClass="mb-5" widgetVar="splitter">
+            <p:splitterPanel >
+                <p:panelGrid columns="2">
+
+                    <p:row styleClass="my-heading-row">
+                        Novo Agendamento
+                    </p:row>
+
+                    <h:form>
+                        <p:outputLabel for="event" value="Data do Afastamento:" />
+                        <p:datePicker id="event" value="#{agendamentoManagedBean.dataAgendamento}" monthNavigator="true"  showWeek="true" size="40" >
+
+                            <p:ajax event="dateSelect" listener="#{agendamentoManagedBean.onDateSelect}" update="msgs, dataSelect, ideUser" />
+
+                        </p:datePicker>
+
+                        <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
+
+
+                        <div class="field col-12 md:col-4">
+                            <p:outputLabel value="Policial: "/>
+                            <p:selectOneMenu id="labeled" value="#{agendamentoManagedBean.nomeUser}"
+                                             alwaysDisplayLabel="true" filter="true">
+
+                                <f:selectItems  value="#{agendamentoManagedBean.listarUsers()}" var="user" itemValue="#{user}" itemLabel="#{user}"/>
+
+                            </p:selectOneMenu>
+                        </div>
+
+
+
+                        <p:outputLabel  value="Tipo de Afastamento "/>
+                        <p:inputText  value="#{agendamentoManagedBean.tipoAfastamento}" size="40"/>
+
+                        <p:commandButton value="Enviar"  update="user" />
+
+                    </h:form>
+
+                </p:panelGrid>
+
+            </p:splitterPanel>
+
+            <p:splitterPanel>
+                <p:row styleClass="my-heading-row">
+                    Afastamentos do dia: <p:outputLabel  value="#{agendamentoManagedBean.dataFormatada}" id="dataSelect"/>
+                    <br/>
+                    Usuario: <p:outputLabel  value="#{agendamentoManagedBean.nomeUser}" id="user"/>
+
+
+                </p:row>
+            </p:splitterPanel>
+
+
+        </p:splitter>
+    </div>
+
+
+</h:body>
+</html>

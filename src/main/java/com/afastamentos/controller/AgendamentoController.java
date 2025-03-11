@@ -46,7 +46,7 @@ public class AgendamentoController {
 
     private final AgendamentoService agendamentoService;
 
-    @PostMapping(value = "/novoagendamento/{idUser}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/{idUser}", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AgendamentoDTO> novoAgendamento(@RequestBody @Valid AgendamentoDTO agendamentoDTO,  @PathVariable Long idUser,  
     UriComponentsBuilder uriBuilder){       
 
@@ -82,7 +82,7 @@ public class AgendamentoController {
 
     }
 
-    @PutMapping("/alterar/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<AgendamentoDTO> alterarAgendamento(@PathVariable Long id, @RequestBody @Valid AgendamentoDTO agendamentoDTO) {
         
         AgendamentoDTO agendamentoAtual = agendamentoService.alterarAgendamento(id, agendamentoDTO);
@@ -90,7 +90,7 @@ public class AgendamentoController {
         return ResponseEntity.ok(agendamentoAtual);
     }
 
-    @DeleteMapping("/excluir/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<AgendamentoDTO> deletarAgendamento(@PathVariable @NotNull Long id){
 
         agendamentoService.excluirAgendamento(id);
